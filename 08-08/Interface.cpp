@@ -12,6 +12,8 @@ char Menu(void)
 	printf("### M E N U # # #\n");
 	printf("\n[A] Cadastrar");
 	printf("\n[B] Exibir");
+	printf("\n[C] Exclusao (Fisica) pelo Codigo");
+	printf("\n[D] Alterar");
 	printf("\n[ESC] Sair\n");
 	
 	return toupper(getche());
@@ -31,6 +33,11 @@ void Executar(void)
 			case 'B': Exibir();
 					break;
 			
+			case 'C': ExclusaoFisica();
+					break;
+
+			case 'D': Alterar();
+					break;			
 		}
 		
 	}while(opcao != 27); //ESC
