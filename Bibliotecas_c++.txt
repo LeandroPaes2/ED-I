@@ -56,3 +56,22 @@ getche(); - Lê um caractere do teclado e o ecoa na tela.
 #include <windows.h>
 
 Sleep(); - Suspende a execução do thread atual por um período especificado.
+
+
+#include <locale.h>
+
+setlocale(categoria, "localidade"); - para configurar o local.
+
+categoria: define qual parte será afetada
+
+LC_ALL → todas as categorias
+LC_CTYPE → caracteres e funções como toupper() e isalpha()
+LC_NUMERIC → formato de números
+LC_TIME → formato de datas
+LC_MONETARY → formatação monetária
+
+"localidade": string que define o idioma e codificação, por exemplo:
+
+"Portuguese_Brazil.1252" → Português Brasil no Windows (code page 1252)
+"pt_BR.UTF-8" → Português Brasil no Linux UTF-8
+"" → usa a configuração padrão do sistema
