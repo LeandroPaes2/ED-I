@@ -29,6 +29,7 @@ strlen(); - Retorna o comprimento de uma string.
 strcpy(); - Copia uma string para outra.
 strcmp(); - Compara duas strings lexicograficamente.
 strtok(); - Divide a entrada em palavras
+strupr(); - É usado para converter uma string para maiúsculas.
 
 #include <ctype.h>
 
