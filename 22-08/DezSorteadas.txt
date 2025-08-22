@@ -1,0 +1,4 @@
+Acertos 1: 1
+Acertos 2: 2
+Acertos 3: 0
+Acertos 4: 1
