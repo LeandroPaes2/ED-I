@@ -53,20 +53,32 @@ void GerarArquivoApostasPremiadas(char NomeTxt[50], int DezSorteados[5])
 													&Reg.Apostados[5], &Reg.Apostados[6]);
 		while(!feof(PtrTxt))
 		{
-			int acertos = 0;
+			int cont = 0;
 			for(int i = 0; i < 7; i++){
 				for(int j = 0; j < 5; j++){
 					if(Reg.Apostados[i] == DezSorteados[j])
-						acertos++;
+						cont++;
 				}
 			}
-			printf("\nAcertos %d: %d", Reg.NrAposta, acertos);
-			fprintf(PtrSort,"Acertos %d: %d\n", Reg.NrAposta, acertos);
+			
+			if(cont == 3)
+				fprintf(PtrSort,"Aposta %d: terno\n", Reg.NrAposta);
+			else if(cont == 4)
+				fprintf(PtrSort,"Aposta %d: quadra\n", Reg.NrAposta);
+			else if(cont == 5)
+				fprintf(PtrSort,"Aposta %d: quina\n", Reg.NrAposta);
+			else 
+				fprintf(PtrSort,"Aposta %d: nada\n", Reg.NrAposta);
+			
+			printf("\nAcertos %d: %d", Reg.NrAposta, cont);
+			//fprintf(PtrSort,"Acertos %d: %d\n", Reg.NrAposta, Reg.acertos);
 			fscanf(PtrTxt,"%d %s %d %d %d %d %d %d %d", &Reg.NrAposta, &Reg.Data, &Reg.Apostados[0], 
 													&Reg.Apostados[1], &Reg.Apostados[2], 
 													&Reg.Apostados[3], &Reg.Apostados[4], 
 													&Reg.Apostados[5], &Reg.Apostados[6]);
 		}
+		
+		
 		fclose(PtrTxt);
 		fclose(PtrSort);
 	
@@ -74,7 +86,7 @@ void GerarArquivoApostasPremiadas(char NomeTxt[50], int DezSorteados[5])
 
 
 int main(void){
-	int NrSorteados [5] = {15, 25, 2, 10, 66};
+	int NrSorteados [5] = {5, 15, 2, 10, 32};
 	ExibirApostas("Aposta.txt");
 	GerarArquivoApostasPremiadas("Aposta.txt", NrSorteados);
 	return 0;

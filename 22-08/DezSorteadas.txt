@@ -1,4 +1,4 @@
-Acertos 1: 1
-Acertos 2: 2
-Acertos 3: 0
-Acertos 4: 1
+Aposta 1: terno
+Aposta 2: nada
+Aposta 3: nada
+Aposta 4: nada
