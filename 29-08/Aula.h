@@ -1,4 +1,4 @@
-#define MAXPILHA 2000
+#define MAXPILHA 100
 
 struct TpPilha{
 	int TOPO, pilha[MAXPILHA];
@@ -29,7 +29,7 @@ int Vazia ( int topo ){
 }
 
 void Exibe (TpPilha p){
-	printf("\nPilha:");
+
 	while(!Vazia(p.TOPO))
 		printf("\n%d", POP(p));
 	getch();

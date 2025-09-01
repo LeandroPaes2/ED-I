@@ -42,6 +42,8 @@ toupper(); - Converte uma letra minúscula em maiúscula.
 
 system(); - Executa um comando no sistema operacional.
 CONSTANTES: NULL - Representa um ponteiro nulo
+srand(); - Define a "semente" para geração de números pseudoaleatórios.
+rand(); - gera o número aleatório.
 
 
 #include <conio2.h>
@@ -52,6 +54,7 @@ textcolor(); - Define a cor do texto que será impresso no console.
 textbackground(); - Define a cor do fundo do texto no console.
 getch(); - Lê um caractere do teclado sem ecoá-lo na tela.
 getche(); - Lê um caractere do teclado e o ecoa na tela.
+kbhit(); - Detecta se o usuário apertou alguma tecla.
 
 
 #include <windows.h>
@@ -76,3 +79,8 @@ LC_MONETARY → formatação monetária
 "Portuguese_Brazil.1252" → Português Brasil no Windows (code page 1252)
 "pt_BR.UTF-8" → Português Brasil no Linux UTF-8
 "" → usa a configuração padrão do sistema
+
+
+#include <time.h>
+
+time(); - Dá a hora atual em segundos

@@ -12,12 +12,26 @@ void EX4(void)
 	caracter = fgetc(Ptr);
 	while(!feof(Ptr))
 	{
-		if(pri == 1)
+		if(pri == 1){
 			fputc(toupper(caracter),EX4);
-		else
+			caracter = fgetc(Ptr);
+		}
+		else if(caracter == ' ')
+		{
 			fputc(caracter,EX4);
+			caracter = fgetc(Ptr);
+			fputc(toupper(caracter),EX4);
+			caracter = fgetc(Ptr);
+			
+		}
+		else{
+			
+			fputc(caracter,EX4);
+			caracter = fgetc(Ptr);
+		}
+			
 		pri = 0;
-		caracter = fgetc(Ptr);
+		
 	}
 	
 	fclose(EX4);
@@ -32,10 +46,6 @@ void Texto(void)
 	gets(texto);
 	
 	fputs(texto,Ptr);
-	
-	
-	
-	
 	
 	fclose(Ptr);
 	

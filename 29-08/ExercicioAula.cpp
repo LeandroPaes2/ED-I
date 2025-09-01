@@ -4,56 +4,83 @@
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
+
 #include "Aula.h"
 
 
-void NumAleatorios(TpPilha p)
+void NumAleatorios(void)
 {
 	
 	FILE *Ptr = fopen("Numeros.txt","w");
-	int cont = 0, num, soma = 0;
-	srand(time(NULL));
+	int cont = 0, num;
+	
+	
 	do
 	{
 		num = rand()%2000+1;
-		printf("%d\n", num);
+		//printf("%d\n", num);
 		fprintf(Ptr, "%d\n", num);
-		PUSH(p, num);
-		soma += num;
 		cont++;
 	}while(cont <= 2000);
 	
-	printf("\nFinal de Arquivo");
 	
 	fclose(Ptr);
 
 }
 
-void B(TpPilha p, int soma)
+void B(TpPilha p)
 {
 	
 	FILE *Ptr = fopen ("Numeros.txt","r");
+	int op, num, contC = 0, soma = 0;
 	
-	printf("\nRetirando: ");
+	
+	srand(time(NULL));
 	do
 	{
-		printf("\n%d", POP(p));
-		Sleep(500);
+		op = rand()%2;
 		
+		fscanf(Ptr, "%d", &num);
+		//printf("\n%d", num);
+		if(op == 1)
+		{
+			if(!Cheia(p.TOPO)){
+				printf("\nInsere");
+				PUSH(p, num);
+			}
+			else
+				contC++;
+				
+		}
+		else
+		{
+			if(!Vazia(p.TOPO)){
+				printf("\nRetira");
+				POP(p);
+				soma += num;
+			}
+			
+		}
+		Sleep(100);
 	}while(!kbhit());
 	
+	printf("\nQuantidade de vezes que a Pilha esteve Cheia: %d", contC);
+	printf("\nSoma de todos os elementos retirados: %d", soma);
+	printf("\n\nPilha atualizada: ");
+	Exibe(p);
+	
 	fclose(Ptr);
+	
 }
 
 int main(void){
 	
 	TpPilha p;
-	int soma;
+	
 	Inicializa(p);
-	NumAleatorios(p);
-	B(p, soma);
-	printf("\n\nPilha atualizada!!!");
-	Exibe(p);
+	NumAleatorios();
+	B(p);
+
 	return 0;
 }
 
