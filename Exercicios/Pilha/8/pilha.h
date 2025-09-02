@@ -1,4 +1,4 @@
-#define Max 10
+#define Max 3
 
 struct TpPilha{
 	int TOPO, Pilha[Max];
@@ -35,13 +35,46 @@ int ElementoTopo(TpPilha p)
 	return p.Pilha[p.TOPO];
 }
 
-void Exibir(TpPilha p)
+void Exibir(TpPilha p1, TpPilha p2, TpPilha p3)
 {
-	while(!Vazia(p.TOPO))
-		printf("\n%d", POP(p));
+	int i = 3;
+	clrscr();
+	while(!Vazia(p1.TOPO))
+	{
+		gotoxy(4, i++);
+		printf("%d", POP(p1));
+	}
+	gotoxy(4,6);
+	printf("a");
+	
+	i = 3;
+	while(!Vazia(p2.TOPO))
+	{
+		gotoxy(8, i++);
+		printf("%d", POP(p2));
+	}
+	gotoxy(8,6);
+	printf("b");
+	
+	i = 3;
+	while(!Vazia(p3.TOPO))
+	{
+		gotoxy(12, i++);
+		printf("%d", POP(p3));
+	}
+	gotoxy(12,6);
+	printf("c");
+	
 	getch();
 }
 
+void Torre(TpPilha &p1, TpPilha &p2){
+	
+	if(p1.Pilha[p1.TOPO] < p2.Pilha[p2.TOPO] || Vazia(p2.TOPO))
+	{
+		PUSH(p2, POP(p1));
+	}
+}
 
 
 
