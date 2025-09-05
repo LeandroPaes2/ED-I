@@ -31,7 +31,6 @@ void Executar(TpPilha &p)
 		}
 		else
 		{
-			caracter = caracter-48;
 			cont++;
 			PUSH(p, res);
 		}
