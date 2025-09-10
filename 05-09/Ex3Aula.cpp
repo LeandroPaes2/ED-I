@@ -9,34 +9,45 @@
 void Executar(TpPilha &p)
 {
 	FILE * Ptr = fopen("Resultados.txt","r");
-	char caracter;
-	int num1, num2, res, cont = 0;
-	rewind(Ptr);
-	caracter = fgetc(Ptr);
+	char linha[50], caracter;
+	int num1, num2, res;
 	
+	
+	fgets(linha, 50, Ptr);
 	while(!feof(Ptr))
 	{
-		if((caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') && cont >= 2)
+		for(int i = 0; i < strlen(linha); i++)
 		{
-		 	num1 = POP(p);
-		 	num2 = POP(p);
-		 	if(caracter == '+')
-		 		res += num1 + num2;
-	 		if(caracter == '-')
-	 			res += num1 - num2;
-	 		if(caracter == '*')
-	 			res += num1 * num2;
-	 		if(caracter == '/')
-	 			res += num1 / num2;
+			caracter = linha[i];
+			
+			if((caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/'))
+			{
+			 	num1 = POP(p);
+			 	num2 = POP(p);
+			 	
+			 	if(caracter == '+')
+			 		res = num1 + num2;
+		 		if(caracter == '-')
+		 			res = num1 - num2;
+		 		if(caracter == '*')
+		 			res = num1 * num2;
+		 		if(caracter == '/')
+		 			res = num1 / num2;
+		 		
+		 		PUSH(p, res);
+			}
+			else if(caracter >= '0' && caracter <= '9')
+			{
+				PUSH(p, caracter - '0');
+			}
 		}
-		else
-		{
-			cont++;
-			PUSH(p, res);
-		}
-		caracter = fgetc(Ptr);	
+		printf("Resultado = %d\n", POP(p));
+		fgets(linha, 50, Ptr);	
 	}	
-	Exibir(p);
+	
+	fclose(Ptr);
+	
+
 }
 
 

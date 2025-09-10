@@ -3,7 +3,7 @@
 struct PilhaM
 {
 	int TOPO1, TOPO2, pilha[Max];
-}
+};
 
 void inicializar(PilhaM &PM)
 {
@@ -53,12 +53,12 @@ void Exibir(PilhaM PM, int NP)
 	if(NP == 1)
 	{
 		while(!Vazia(PM.TOPO1, NP))
-			printf("%d\n",POP(PM, NP))
+			printf("%d\n",POP(PM, NP));
 	}
 	else
 	{
 		while(!Vazia(PM.TOPO2, NP))
-			printf("%d\n",POP(PM, NP))
+			printf("%d\n",POP(PM, NP));
 	}
 
 }
