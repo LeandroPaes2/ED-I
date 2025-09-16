@@ -11,12 +11,11 @@
 		void Exibir(TpFila f);
 */
 
-#define MAXFILA
-
+#define MAXFILA 10
 
 struct TpElem{
 	char info;
-	char prior;
+	int prior;
 };
 
 struct TpFilaP{
@@ -24,35 +23,32 @@ struct TpFilaP{
 	TpElem fila[MAXFILA];
 };
 
-void Inicializa(TpFilaP &F){
+void Inicializa(TpFilaP &f){
 	f.fim = -1;
 }
 
-void vazia(int fim){
+char Vazia(int fim){
 	return fim == -1;
 }
 
-void Cheia(int fim){
+char Cheia(int fim){
 	return fim == MAXFILA - 1;
 }
 
-void Insere (TpFilaP &f, TpElem elem){
-	int i = f.fim, j = f.fim;
-	while(i>=0 && f.fila.prior[i] != elem.prior)
+void Insere(TpFilaP &f, TpElem elem){
+	int i = f.fim;
+	while(i >= 0 && f.fila[i].prior < elem.prior){
+		f.fila[i+1] = f.fila[i];
 		i--;
-	if(f.fila.prior[i] == elem.prior){
-		while(j>i){
-			f.fila[j+1] = f.fila[j];
-			j--;
-		}
-		f.fila[i] = elem;
 	}
+	f.fila[i+1] = elem;
+    f.fim++;
 }
 
-TpElem Retira (TpFilaP &f){
+TpElem Retira(TpFilaP &f){
 	int i;
 	TpElem elem = f.fila[0];
-	for(i=0; i<f.fim; i++)
+	for(i = 0;i < f.fim; i++)
 		f.fila[i] = f.fila[i+1];
 	f.fim--;
 	return elem;

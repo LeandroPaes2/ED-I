@@ -12,35 +12,33 @@ void Exibir(TpFila f);
 
 */		
 
-#define MAXFILA
-
-
+#define MAXFILA 10
 
 struct TpFila{
 	int fim;
 	char fila[MAXFILA];
 };
 
-void Inicializa(TpFila &F){
+void Inicializa(TpFila &f){
 	f.fim = -1;
 }
 
-void vazia(int fim){
+char Vazia(int fim){
 	return fim == -1;
 }
 
-void Cheia(int fim){
+char Cheia(int fim){
 	return fim == MAXFILA - 1;
 }
 
-void Insere (TpFila &f, char elem){
+void Insere(TpFila &f, char elem){
 	f.fila[++f.fim] = elem;
 }
 
-char Retira (TpFila &f){
+char Retira(TpFila &f){
 	int i;
 	char elem = f.fila[0];
-	for(i=0; i<f.fim; i++)
+	for(i = 0;i < f.fim;i++)
 		f.fila[i] = f.fila[i+1];
 	f.fim--;
 	return elem;
