@@ -1,0 +1,60 @@
+struct FilaC
+{
+    int Ini, Fim, cont;
+    int FC[MAXFILA];
+};
+
+void Inicializar(FilaC &F)
+{
+    F.Ini = 0;
+    F.Fim = -1;
+    F.cont = 0;
+}
+
+void Inserir(FilaC &F, int elem)
+{
+	if(F.Fim==MAXFILA-1)
+		F.Fim = 0;
+	else
+		++F.FIM;	
+    F.FC[F.Fim] = elem;
+    F.cont++;
+}
+
+int Retirar(FilaC &F)
+{
+    int aux;
+    aux = F.FC[F.Ini];
+    if(F.Ini==MAXFILA-1)
+    	F.Ini=0;
+    else
+    	F.Ini++;
+    F.cont--;
+    return aux;
+}
+
+int ElemIni(FilaC F)
+{
+    return F.FC[F.Ini];
+}
+
+int ElemFim(FilaC F)
+{
+    return F.FC[F.Fim];
+}
+
+char FilaVazia(int cont)
+{
+    return cont == 0;
+}
+
+char FilaCheia(int cont)
+{
+    return cont == MAXFILA;
+}
+
+void ExibeFila(FilaC F)
+{
+    while (!FilaVazia(F.cont))
+        printf("%d\n", Retirar(F));
+}
