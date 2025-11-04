@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <conio.h>
+
 
 struct TpPont
 {
@@ -24,7 +26,37 @@ void Exibir(TpPont *lista)
 	Exibir(lista->prox);
 }
 
-TpPont *Ordena(TpPont *lista, TpPont *caixa, int valor)
+TpPont *Excluir(TpPont *lista, int valor)
+{
+	TpPont *p = lista;
+	TpPont *ant = NULL;
+	
+	while(p != NULL && valor != p->info)
+	{
+			ant = p;
+			p = p->prox;
+	}
+	if(p == NULL)
+	{
+		printf("\nElemento nao encontrdo");
+		getch();
+		return lista;
+	}
+	
+	if(ant == NULL)
+	{
+		lista = lista->prox;
+		delete(p);
+	}
+	else
+	{
+		ant->prox = p->prox;
+		delete(p);
+	}
+	return lista;
+}
+
+TpPont *OrdenaCres(TpPont *lista, TpPont *caixa, int valor)
 {
 	
 	TpPont *p = lista;
@@ -32,7 +64,7 @@ TpPont *Ordena(TpPont *lista, TpPont *caixa, int valor)
 	
 	while(p != NULL && valor > p->info)
 	{
-		ant = p;
+		caixa->ant = p;
 		p = p->prox;
 	}
 	
@@ -49,7 +81,7 @@ TpPont *Ordena(TpPont *lista, TpPont *caixa, int valor)
 	{
 		caixa->prox = p;
 		caixa->ant = ant;
-		ant->prox = caixa;
+		caixa->ant->prox = caixa;
 		
 		if(p != NULL)
 			p->ant = caixa;
@@ -60,6 +92,7 @@ TpPont *Ordena(TpPont *lista, TpPont *caixa, int valor)
 TpPont *Inserir(TpPont *lista)
 {
 	TpPont *caixa;
+	caixa->ant = NULL;
 	int num;
 	
 	
@@ -72,14 +105,14 @@ TpPont *Inserir(TpPont *lista)
 		
 		
 		
-		lista = Ordena(lista, caixa, num);
+		lista = OrdenaCres(lista, caixa, num);
 		
 		//lista = caixa;
 		
 		scanf("%d", &num);
 	}
 	
-	Exibir(lista);
+	
 	
 	return lista;
 }
@@ -87,8 +120,15 @@ TpPont *Inserir(TpPont *lista)
 int main(void)
 {
 	TpPont *lista = NULL;
+	int num;
+	
 	
 	lista = Inserir(lista);
 	
+	printf("\nExcluir: ");
+	scanf("%d", &num);
+	lista = Excluir(lista, num);
+	
+	Exibir(lista);
 	return 0;
 }
