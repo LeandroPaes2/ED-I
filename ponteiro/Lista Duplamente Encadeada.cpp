@@ -64,7 +64,7 @@ TpPont *OrdenaCres(TpPont *lista, TpPont *caixa, int valor)
 	
 	while(p != NULL && valor > p->info)
 	{
-		caixa->ant = p;
+		ant = p;
 		p = p->prox;
 	}
 	
@@ -81,7 +81,7 @@ TpPont *OrdenaCres(TpPont *lista, TpPont *caixa, int valor)
 	{
 		caixa->prox = p;
 		caixa->ant = ant;
-		caixa->ant->prox = caixa;
+		ant->prox = caixa;
 		
 		if(p != NULL)
 			p->ant = caixa;
@@ -92,7 +92,7 @@ TpPont *OrdenaCres(TpPont *lista, TpPont *caixa, int valor)
 TpPont *Inserir(TpPont *lista)
 {
 	TpPont *caixa;
-	caixa->ant = NULL;
+	
 	int num;
 	
 	
